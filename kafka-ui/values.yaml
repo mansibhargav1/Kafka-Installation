@@ -24,8 +24,8 @@ existingConfigMap: ""
 yamlApplicationConfig:
   kafka:
     clusters:
-      - name: my-cluster
-        bootstrapServers: my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
+      - name: kafka-cluster
+        bootstrapServers: kafka-cluster-kafka-bootstrap.kafka.svc.cluster.local:9092
   auth:
     type: LOGIN_FORM
   spring:
