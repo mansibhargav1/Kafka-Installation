@@ -1,0 +1,21 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  annotations:
+  name: kafka-ui-vs
+  namespace: ansible
+spec:
+  gateways:
+  - keycloak-gw
+  hosts:
+  - '*'
+  http:
+  - match:
+    - uri:
+        prefix: /kafka-ui
+    route:
+    - destination:
+        host: kafka-ui.ansible.svc.cluster.local
+        port:
+          number: 80
+

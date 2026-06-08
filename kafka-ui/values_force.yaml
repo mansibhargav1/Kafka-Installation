@@ -1,0 +1,29 @@
+yamlApplicationConfig:
+  kafka:
+    clusters:
+      - name: databus
+        bootstrapServers: nst.o3.ocloud.telus.com:30099
+        ssl:
+          trustLocation: "/opt/bitnami/kafka/config/certs/kafka.keystore.jks"
+  env:
+  - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_TRUSTSTORE_LOCATION
+    value: "/ssl/kafka.keystore.jks"
+  - name: KAFKA_CLUSTERS_0_PROPERTIES_SSL_KEYSTORE_LOCATION
+    value: "/ssl/kafka.keystore.jks"
+  volumeMounts:
+  - name: config-volume
+    mountPath: "/ssl"
+  volumes:
+  - name: config-volume
+    configMap:
+      name: ssl-files
+  auth:
+    type: login_form
+  spring:
+    security:
+      user:
+        name: "telusadmin"
+        password: "Vision@Telus09"
+  server:
+    servlet:
+      context-path: "/kafka-ui"
